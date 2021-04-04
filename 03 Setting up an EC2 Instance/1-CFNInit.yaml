@@ -16,22 +16,22 @@ Mappings:
     ap-southeast-1:
       AMI: ami-e2adf99e
     ap-southeast-2:
-      AMI: ami-43874721    
+      AMI: ami-43874721
 Resources:
   EC2Instance:
     Type: AWS::EC2::Instance
-    Metadata: 
+    Metadata:
       AWS::CloudFormation::Init:
-        config: 
-          packages: 
+        config:
+          packages:
             yum:
               httpd: []
               php: []
-          files: 
+          files:
             /var/www/html/index.php:
               content: !Sub |
-                <?php print "Hello world Abs was here!"; ?>
-          services: 
+                <?php print "Hello world Sakis was here!"; ?>
+          services:
             sysvinit:
               httpd:
                 enabled: true
@@ -50,9 +50,9 @@ Resources:
           Value: !Ref NameOfService
       KeyName: !Ref KeyName
       UserData:
-        'Fn::Base64': 
+        'Fn::Base64':
           !Sub |
-            #!/bin/bash -xe            
+            #!/bin/bash -xe
             # Ensure AWS CFN Bootstrap is the latest
             yum install -y aws-cfn-bootstrap
             # Install the files and packages from the metadata
